@@ -1,0 +1,143 @@
+// 横向 flex
+@mixin flex-row-normal() {
+  display: flex;
+  align-items: center;
+}
+@mixin flex-row($child: '.grow') {
+  @include flex-row-normal();
+  @include flex-row-child($child);
+}
+@mixin flex-row-child($child: '.grow') {
+  & > #{$child} {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+  & > :not(#{$child}) {
+    flex-shrink: 0;
+  }
+}
+@mixin flex-row-top() {
+  align-items: flex-start;
+}
+@mixin flex-row-bottom() {
+  align-items: flex-end;
+}
+@mixin flex-row-stretch() {
+  align-items: stretch;
+}
+@mixin flex-row-left() {
+  justify-content: flex-start;
+}
+@mixin flex-row-right() {
+  justify-content: flex-end;
+}
+@mixin flex-row-center() {
+  justify-content: center;
+}
+@mixin flex-row-space() {
+  justify-content: space-between;
+}
+@mixin flex-row-wrap() {
+  flex-wrap: wrap;
+}
+
+// 纵向 flex
+@mixin flex-col-normal() {
+  display: flex;
+  flex-direction: column;
+}
+@mixin flex-col($child: '.grow') {
+  @include flex-col-normal();
+  @include flex-col-child($child);
+}
+@mixin flex-col-child($child: '.grow') {
+  & > #{$child} {
+    flex-grow: 1;
+  }
+  & > :not(#{$child}) {
+    flex-shrink: 0;
+  }
+}
+@mixin flex-col-top() {
+  justify-content: flex-start;
+}
+@mixin flex-col-middle() {
+  justify-content: center;
+}
+@mixin flex-col-bottom() {
+  justify-content: flex-end;
+}
+@mixin flex-col-center() {
+  align-items: center;
+}
+@mixin flex-col-left() {
+  align-items: flex-start;
+}
+@mixin flex-col-right() {
+  align-items: flex-end;
+}
+@mixin flex-col-stretch() {
+  align-items: stretch;
+}
+
+// flex 居中
+@mixin flex-center() {
+  @include flex-row();
+  @include flex-row-center();
+}
+
+@mixin flex-build() {
+  .flex-row {
+    @include flex-row();
+    &.t {
+      @include flex-row-top();
+    }
+    &.s {
+      @include flex-row-stretch();
+    }
+    &.b {
+      @include flex-row-bottom();
+    }
+    &.l {
+      @include flex-row-left();
+    }
+    &.c {
+      @include flex-row-center();
+    }
+    &.r {
+      @include flex-row-right();
+    }
+    &.w {
+      @include flex-row-wrap();
+    }
+  }
+  
+  .flex-col {
+    @include flex-col();
+    &.t {
+      @include flex-col-top();
+    }
+    &.m {
+      @include flex-col-middle();
+    }
+    &.b {
+      @include flex-col-bottom();
+    }
+    &.l {
+      @include flex-col-left();
+    }
+    &.c {
+      @include flex-col-center();
+    }
+    &.r {
+      @include flex-col-right();
+    }
+    &.s {
+      @include flex-col-stretch();
+    }
+  }
+  
+  .flex-center {
+    @include flex-center();
+  }
+}

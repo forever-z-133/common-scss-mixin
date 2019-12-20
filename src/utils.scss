@@ -1,0 +1,35 @@
+@mixin child-map() {
+  & > :not(:last-child) {
+    @content;
+  }
+}
+
+@mixin this($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+$PI: 3.14159265359;
+
+@function sin($angle) {
+  $sin: 0;
+  $angle: rad($angle);
+  @for $i from 0 through 10 {
+    $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+  }
+  @return $sin;
+}
+
+@function cos($angle) {
+  $cos: 0;
+  $angle: rad($angle);
+  @for $i from 0 through 10 {
+    $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+  }
+  @return $cos;
+}
+
+@function tan($angle) {
+  @return sin($angle) / cos($angle);
+}

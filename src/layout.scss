@@ -1,0 +1,64 @@
+@import './others.scss';
+
+@mixin inblock-row() {
+  letter-spacing: -1em;
+  & > * {
+    display: inline-block;
+    letter-spacing: 0;
+  }
+}
+
+@mixin float-row() {
+  @include clearfix;
+  & > * {
+    float: left;
+  }
+}
+
+@mixin scroller($dir: '') {
+  @if ($dir == y) {
+    overflow-x: hidden;
+    overflow-y: auto;
+  } @else if ($dir == x) {
+    overflow-x: auto;
+    overflow-y: hidden;
+  } @else {
+    overflow: auto;
+  }
+  -webkit-overflow-scrolling: touch;
+}
+@mixin scroller-x() {
+  @include scroller(x);
+}
+@mixin scroller-y() {
+  @include scroller(y);
+}
+
+@mixin layout-build() {
+  .block {
+    display: block;
+  }
+  .inline {
+    display: inline;
+  }
+  .inblock {
+    display: inline-block;
+  }
+
+  .inblock-row {
+    @include inblock-row();
+  }
+  .float-row {
+    @include float-row();
+  }
+
+  .scroller {
+    @include scroller();
+  }
+  .scroller-y {
+    @include scroller-y();
+  }
+  .scroller-x {
+    @include scroller-x();
+  }
+}

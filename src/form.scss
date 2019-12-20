@@ -1,0 +1,15 @@
+@mixin input-file() {
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  & > [type="file"] {
+    position: absolute;
+    left: -999em;
+  }
+}
+
+@mixin form-build() {
+  label.input-file {
+    @include input-file();
+  }
+}

@@ -1,0 +1,67 @@
+// 覆盖
+@mixin cover() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+// 覆盖（img,video 等）
+@mixin fitCover($fit: cover) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: $fit;
+}
+
+// 定位
+@mixin pos-center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin pos-top() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+@mixin pos-bottom() {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin position-build() {
+  .relative {
+    position: relative;
+  }
+  .absolute {
+    position: absolute;
+  }
+  .fixed {
+    position: fixed;
+  }
+  .sticky {
+    position: sticky;
+  }
+  .cover {
+    @include cover;
+  }
+  .fit-cover {
+    @include fitCover;
+  }
+  .pos-center {
+    @include pos-center;
+  }
+  .pos-top {
+    @include pos-top;
+  }
+  .pos-bottom {
+    @include pos-bottom;
+  }
+}

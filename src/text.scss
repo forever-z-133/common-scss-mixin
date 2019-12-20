@@ -1,0 +1,57 @@
+/* ---------- 文本超出省略 */
+@mixin textOverflow($line: 1) {
+  @if $line==1 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  } @else {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@mixin text-left() {
+  text-align: left;
+}
+@mixin text-right() {
+  text-align: left;
+}
+@mixin text-center() {
+  text-align: left;
+}
+@mixin text-justify() {
+  text-align: justify;
+}
+@mixin text-last-justify($height: 1.4em) {
+  text-align-last: justify;
+}
+/* text-last-justify 的兼容方案 */
+// @mixin text-last-justify($height: 1.4em) {
+//   text-align: justify;
+//   height: $height; /* 需要定高，不然会有诡异的空隙 */
+//   line-height: $height;
+//   &::after {
+//     content: '';
+//     width: 100%;
+//     height: 0;
+//     display: inline-block;
+//   }
+// }
+
+@mixin text-build() {
+  .textOverflow {
+    @include textOverflow(1);
+  }
+  @for $i from 1 through 4 {
+    .textOverflow#{$i} {
+      @include textOverflow($i);
+    }
+  }
+  .text-left {
+    @include text-left();
+  }
+}

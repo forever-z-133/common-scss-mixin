@@ -1,0 +1,19 @@
+@function px($px) {
+  @return $px * 1px;
+}
+
+$primary: rgb(31, 181, 173);
+
+$gap-xs: px(5);
+$gap-sm: px(10);
+$gap-md: px(15);
+$gap-xl: px(30);
+$row-gap: $gap-md;
+$child-gap: $gap-xs;
+
+$radius-md: px(4);
+$radius-round: 1000px;
+$radius-circle: 50%;
+
+$border-width: px(1);
+$border-color: #e8e8e8;

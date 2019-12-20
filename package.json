@@ -1,0 +1,24 @@
+{
+  "name": "common-scss-mixin",
+  "version": "1.0.2",
+  "description": "常见而公用的 scss 的 mixin 方法",
+  "main": "index.scss",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forever-z-133/common-scss-mixin.git"
+  },
+  "keywords": [
+    "scss",
+    "mixin",
+    "scss-mixin",
+    "common-scss",
+    "common-css"
+  ],
+  "author": "forever-z-133",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/forever-z-133/common-scss-mixin/issues"
+  },
+  "homepage": "https://github.com/forever-z-133/common-scss-mixin"
+}
