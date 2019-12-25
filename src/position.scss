@@ -7,7 +7,7 @@
   bottom: 0;
 }
 // 覆盖（img,video 等）
-@mixin fitCover($fit: cover) {
+@mixin fit-cover($fit: cover) {
   position: absolute;
   top: 0;
   left: 0;
@@ -50,18 +50,18 @@
     position: sticky;
   }
   .cover {
-    @include cover;
+    @include cover();
   }
   .fit-cover {
-    @include fitCover;
+    @include fit-cover();
   }
   .pos-center {
-    @include pos-center;
+    @include pos-center();
   }
   .pos-top {
-    @include pos-top;
+    @include pos-top();
   }
   .pos-bottom {
-    @include pos-bottom;
+    @include pos-bottom();
   }
 }

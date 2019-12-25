@@ -63,7 +63,7 @@
   position: relative;
   @include __ratioBefore($ratio);
   & > * {
-    @include fitCover($fit);
+    @include fit-cover($fit);
   }
 }
 
