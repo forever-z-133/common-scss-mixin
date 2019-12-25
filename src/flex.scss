@@ -19,6 +19,9 @@
 @mixin flex-row-top() {
   align-items: flex-start;
 }
+@mixin flex-row-middle() {
+  align-items: center;
+}
 @mixin flex-row-bottom() {
   align-items: flex-end;
 }
@@ -28,11 +31,11 @@
 @mixin flex-row-left() {
   justify-content: flex-start;
 }
-@mixin flex-row-right() {
-  justify-content: flex-end;
-}
 @mixin flex-row-center() {
   justify-content: center;
+}
+@mixin flex-row-right() {
+  justify-content: flex-end;
 }
 @mixin flex-row-space() {
   justify-content: space-between;
@@ -67,17 +70,17 @@
 @mixin flex-col-bottom() {
   justify-content: flex-end;
 }
-@mixin flex-col-center() {
-  align-items: center;
+@mixin flex-col-space() {
+  justify-content: space-between;
 }
 @mixin flex-col-left() {
   align-items: flex-start;
 }
+@mixin flex-col-center() {
+  align-items: center;
+}
 @mixin flex-col-right() {
   align-items: flex-end;
-}
-@mixin flex-col-stretch() {
-  align-items: stretch;
 }
 
 // flex 居中
@@ -92,11 +95,14 @@
     &.t {
       @include flex-row-top();
     }
-    &.s {
-      @include flex-row-stretch();
+    &.m {
+      @include flex-row-middle();
     }
     &.b {
       @include flex-row-bottom();
+    }
+    &.st {
+      @include flex-row-stretch();
     }
     &.l {
       @include flex-row-left();
@@ -107,11 +113,14 @@
     &.r {
       @include flex-row-right();
     }
+    &.s {
+      @include flex-row-space();
+    }
     &.w {
       @include flex-row-wrap();
     }
   }
-  
+
   .flex-col {
     @include flex-col();
     &.t {
@@ -123,6 +132,9 @@
     &.b {
       @include flex-col-bottom();
     }
+    &.s {
+      @include flex-col-space();
+    }
     &.l {
       @include flex-col-left();
     }
@@ -132,11 +144,8 @@
     &.r {
       @include flex-col-right();
     }
-    &.s {
-      @include flex-col-stretch();
-    }
   }
-  
+
   .flex-center {
     @include flex-center();
   }

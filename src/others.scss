@@ -1,13 +1,6 @@
 @import './position.scss';
 
-/* ---------- 搞个方盒子 */
-@mixin rect-box($n: 100px) {
-  width: $n;
-  height: $n;
-  display: block;
-}
-
-/* ---------- 重置 a input 等的样式 */
+/* 重置 a input 等的样式 */
 @mixin reset() {
   font: inherit;
   color: inherit;
@@ -16,38 +9,15 @@
   text-decoration: none;
 }
 
-/* ---------- 禁用 */
-@mixin disabled() {
-  pointer-events: none;
-  user-select: none;
+/* 清除 ul 样式 */
+@mixin normal-list() {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
 }
 
-/* ---------- 等比例盒子 */
-@mixin ratioBefore($ratio:1) {
-  &::before {
-    content: '';
-    float: left;
-    padding-top: $ratio * 100%;
-  }
-}
-@mixin ratio($ratio: 1) {
-  position: relative;
-  @include ratioBefore($ratio);
-  &::after {
-    content: '';
-    display: block;
-    clear: both;
-  }
-}
-@mixin imgRatio($ratio: 1, $fit: cover) {
-  position: relative;
-  @include ratioBefore($ratio);
-  & > * {
-    @include fitCover($fit);
-  }
-}
-
-/* ---------- 清楚浮动 */
+/* 清楚浮动 */
 @mixin clearfix() {
   &::after {
     display: block;
@@ -56,22 +26,76 @@
   }
 }
 
-/* ---------- 清除 ul 样式 */
-@mixin normal-list() {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style: none;
+/* 搞个方盒子 */
+@mixin rect-box($n: 100px) {
+  width: $n;
+  height: $n;
+  display: block;
+}
+
+/* 禁用 */
+@mixin disabled($grey: false) {
+  pointer-events: none;
+  user-select: none;
+  @if ($grey == true) {
+    filter: grayscale(1);
+  }
+}
+
+/* 等比例盒子，两套方案是同样的效果，但 imgRatio 会让子级定位 */
+@mixin __ratioBefore($ratio: 1) {
+  &::before {
+    content: '';
+    float: left;
+    padding-top: $ratio * 100%;
+  }
+}
+@mixin ratio($ratio: 1) {
+  position: relative;
+  @include __ratioBefore($ratio);
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+@mixin imgRatio($ratio: 1, $fit: cover) {
+  position: relative;
+  @include __ratioBefore($ratio);
+  & > * {
+    @include fitCover($fit);
+  }
+}
+
+/* 有内容，但不影响布局 */
+@mixin seo-only() {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
 }
 
 @mixin others-build() {
   .reset {
     @include reset();
   }
+  .normal-list {
+    @include normal-list();
+  }
+  .clearfix {
+    @include clearfix();
+  }
+  .rect-box {
+    @include rect-box();
+  }
   .disabled {
     @include disabled();
-    &.gray {
-      filter: grayscale(1);
+    &.grey {
+      @include disabled(true);
     }
   }
   .ratio {
@@ -80,10 +104,7 @@
   .imgRatio {
     @include imgRatio();
   }
-  .clearfix {
-    @include clearfix();
-  }
-  .normal-list {
-    @include normal-list();
+  .seo-only {
+    @include seo-only();
   }
 }

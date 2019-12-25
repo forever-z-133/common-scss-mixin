@@ -1,5 +1,6 @@
 @import './others.scss';
 
+/* inline-block 行 */
 @mixin inblock-row() {
   letter-spacing: -1em;
   & > * {
@@ -8,13 +9,15 @@
   }
 }
 
+/* float 行 */
 @mixin float-row() {
-  @include clearfix;
+  @include clearfix();
   & > * {
     float: left;
   }
 }
 
+/* 滚动容器 */
 @mixin scroller($dir: '') {
   @if ($dir == y) {
     overflow-x: hidden;

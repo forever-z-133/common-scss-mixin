@@ -1,25 +1,5 @@
 @import './var.scss';
 
-/* margin */
-@mixin marginDir($dir, $i, $important: null) {
-  @if ($important == true) {
-    $important: !important;
-  }
-  margin-#{$dir}: #{$i} $important;
-}
-@mixin marginL($i, $important) {
-  @include marginDir('left', $i, $important);
-}
-@mixin marginR($i, $important) {
-  @include marginDir('right', $i, $important);
-}
-@mixin marginT($i, $important) {
-  @include marginDir('top', $i, $important);
-}
-@mixin marginB($i, $important) {
-  @include marginDir('bottom', $i, $important);
-}
-
 /* 两边间隙 */
 @mixin margin($n: $row-gap) {
   margin: $n;
@@ -31,14 +11,6 @@
 @mixin margin-col($n: $row-gap) {
   margin-top: $n;
   margin-bottom: $n;
-}
-
-/* padding */
-@mixin paddingDir($dir, $i, $important: null) {
-  @if ($important == true) {
-    $important: !important;
-  }
-  padding-#{$dir}: #{$i} $important;
 }
 
 /* 两边间隙 */
@@ -59,12 +31,24 @@
   @include margin-row(auto);
 }
 
+/* 子级间隙 */
+@mixin child-gap-right($n: $child-gap) {
+  & > :not(:last-child) {
+    margin-right: $n;
+  }
+}
+@mixin child-gap-bottom($n: $child-gap) {
+  & > :not(:last-child) {
+    margin-bottom: $n;
+  }
+}
+
 /* 导出结果 */
 @mixin gap-build() {
   @each $dir in left, right, top, bottom {
     @for $i from 1 through 10 {
       .margin-#{$dir}-#{$i*5} {
-        @include marginDir($dir, $i * $child-gap);
+        margin-#{$dir}: $i * $child-gap;
       }
     }
   }
@@ -72,7 +56,7 @@
   @each $dir in left, right, top, bottom {
     @for $i from 1 through 10 {
       .padding-#{$dir}-#{$i*5} {
-        @include paddingDir($dir, $i * $child-gap);
+        padding-#{$dir}: $i * $child-gap;
       }
     }
   }
@@ -80,8 +64,10 @@
   @each $dir in right, bottom {
     @for $i from 1 through 10 {
       .gap-#{$dir}-#{$i*5} {
-        @include child-map {
-          @include marginDir($dir, $i * $child-gap);
+        @if ($dir == right) {
+          @include child-gap-right($i * $child-gap);
+        } @else if ($dir == bottom) {
+          @include child-gap-bottom($i * $child-gap);
         }
       }
     }

@@ -1,8 +1,9 @@
+/* 自定义上传按钮，必须用 label 包裹并带上此类 */
 @mixin input-file() {
   position: relative;
   vertical-align: middle;
   cursor: pointer;
-  & > [type="file"] {
+  & > [type='file'] {
     position: absolute;
     left: -999em;
   }
