@@ -6,6 +6,8 @@
 npm i -S common-scss-mixin
 ```
 
+### 使用 scss
+
 ```scss
 // xxx.scss
 @import '~common-scss-mixin';
@@ -19,6 +21,8 @@ npm i -S common-scss-mixin
 }
 ```
 
+### 使用 css
+
 ```scss
 // 也有打包好的 css 可供使用，但类名会有所不同
 // 如果喜欢本项目的话，可通过源码进一步尝试
@@ -27,6 +31,8 @@ npm i -S common-scss-mixin
 ```html
 <div class="post-top flex-row padding-row gap-right-5 border-bottom"></div>
 ```
+
+### 使用单个 scss
 
 ```scss
 // 如果担心编译太多 mixin 会影响性能，可分别引入
@@ -40,6 +46,10 @@ npm i -S common-scss-mixin
 @import '~common-scss-mixin/src/text.scss';
 @import '~common-scss-mixin/src/utils.scss';
 @import '~common-scss-mixin/src/var.scss';
+
+// 单个 css 则可以自己打包
+@import '~common-scss-mixin/src/flex.scss';
+@include flex-build();
 ```
 
 

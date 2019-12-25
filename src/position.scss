@@ -35,6 +35,18 @@
   right: 0;
   bottom: 0;
 }
+@mixin pos-left() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+@mixin pos-right() {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
 
 @mixin position-build() {
   .relative {
@@ -63,5 +75,11 @@
   }
   .pos-bottom {
     @include pos-bottom();
+  }
+  .pos-left {
+    @include pos-left();
+  }
+  .pos-right {
+    @include pos-right();
   }
 }
