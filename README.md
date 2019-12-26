@@ -52,6 +52,24 @@ npm i -S common-scss-mixin
 @include flex-build();
 ```
 
+### 全局使用 scss
+
+不想每个地方都去 @import，可使用 sass-loader 配置,
+让其加在编译前达到全局使用的效果，只管 @include 即可。
+
+```js
+// 以 vue-cli 的 vue.config.js 举例:
+module.exports = {
+  css: {
+    loaderOptions: {
+      sass: {
+        // 当 sass-loader 版本低于 7.0 时需改为 data
+        prependData: "@import 'common-scss-mixin';"
+      }
+    }
+  }
+}
+```
 
 ## 2、如何自定义
 
