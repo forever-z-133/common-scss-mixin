@@ -59,7 +59,7 @@
     clear: both;
   }
 }
-@mixin imgRatio($ratio: 1, $fit: cover) {
+@mixin image-ratio($ratio: 1, $fit: cover) {
   position: relative;
   @include __ratioBefore($ratio);
   & > * {
@@ -101,8 +101,8 @@
   .ratio {
     @include ratio();
   }
-  .imgRatio {
-    @include imgRatio();
+  .image-ratio {
+    @include image-ratio();
   }
   .seo-only {
     @include seo-only();

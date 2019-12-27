@@ -82,7 +82,7 @@ module.exports = {
 
 可配置项一览：
 ```scss
-@function px($px) {}
+@function px($n) { @return $n * 1px; }
 
 $gap-xs: px(5);
 $gap-sm: px(10);
