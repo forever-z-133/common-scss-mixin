@@ -73,16 +73,18 @@ module.exports = {
 
 ## 2、如何自定义
 
+_此功能还未实现，嘤嘤嘤_
+
 ```scss
 @function px($n) {
-  @return $n * 1rem;
+  @return $n * 1px;
 }
 @import '~common-scss-mixin';
 ```
 
 可配置项一览：
 ```scss
-@function px($n) { @return $n * 1px; }
+@function px($n) { @return $n * 1rem; }
 
 $gap-xs: px(5);
 $gap-sm: px(10);
@@ -178,6 +180,7 @@ $border-color: #e8e8e8;
 @include ratio($ratio);
 @include image-ratio($ratio, $fit);
 @include seo-only();
+@include pos-hide();
 
 /* utils.scss */
 @mixin child-map() { $content }

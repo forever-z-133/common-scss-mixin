@@ -1,6 +1,6 @@
 // 覆盖
-@mixin cover() {
-  position: absolute;
+@mixin cover($type: absolute) {
+  position: $type;
   top: 0;
   left: 0;
   right: 0;
@@ -17,32 +17,32 @@
 }
 
 // 定位
-@mixin pos-center() {
-  position: absolute;
+@mixin pos-center($type: absolute) {
+  position: $type;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-@mixin pos-top() {
-  position: absolute;
+@mixin pos-top($type: absolute) {
+  position: $type;
   top: 0;
   left: 0;
   right: 0;
 }
-@mixin pos-bottom() {
-  position: absolute;
+@mixin pos-bottom($type: absolute) {
+  position: $type;
   left: 0;
   right: 0;
   bottom: 0;
 }
-@mixin pos-left() {
-  position: absolute;
+@mixin pos-left($type: absolute) {
+  position: $type;
   top: 0;
   left: 0;
   bottom: 0;
 }
-@mixin pos-right() {
-  position: absolute;
+@mixin pos-right($type: absolute) {
+  position: $type;
   top: 0;
   right: 0;
   bottom: 0;

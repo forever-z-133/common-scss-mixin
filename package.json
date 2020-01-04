@@ -1,6 +1,6 @@
 {
   "name": "common-scss-mixin",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "常见而公用的 scss 的 mixin 方法",
   "main": "index.scss",
   "scripts": {},
