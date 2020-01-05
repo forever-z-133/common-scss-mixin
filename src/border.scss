@@ -5,20 +5,20 @@
   border-#{$dir}: $width solid $color;
   /* 未来可能会加入毛细线方案吧 */
 }
-@mixin border($color: $border-color) {
-  border: $border-width solid $color;
+@mixin border($color: $border-color, $width: $border-width) {
+  border: $width solid $color;
 }
-@mixin border-top($color: $border-color) {
-  @include borderDir(top);
+@mixin border-top($color: $border-color, $width: $border-width) {
+  @include borderDir(top, $width, $color);
 }
-@mixin border-bottom($color: $border-color) {
-  @include borderDir(bottom);
+@mixin border-bottom($color: $border-color, $width: $border-width) {
+  @include borderDir(bottom, $width, $color);
 }
-@mixin border-left($color: $border-color) {
-  @include borderDir(left);
+@mixin border-left($color: $border-color, $width: $border-width) {
+  @include borderDir(left, $width, $color);
 }
-@mixin border-right($color: $border-color) {
-  @include borderDir(right);
+@mixin border-right($color: $border-color, $width: $border-width) {
+  @include borderDir(right, $width, $color);
 }
 
 /* 圆角部分 */

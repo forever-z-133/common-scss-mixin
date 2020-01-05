@@ -10,7 +10,7 @@ npm i -S common-scss-mixin
 
 ```scss
 // xxx.scss
-@import '~common-scss-mixin';
+@import 'common-scss-mixin';
 
 .someClass {
   @include pos-top(); /* 顶部定位 */
@@ -36,19 +36,19 @@ npm i -S common-scss-mixin
 
 ```scss
 // 如果担心编译太多 mixin 会影响性能，可分别引入
-@import '~common-scss-mixin/src/border.scss';
-@import '~common-scss-mixin/src/flex.scss';
-@import '~common-scss-mixin/src/form.scss';
-@import '~common-scss-mixin/src/gap.scss';
-@import '~common-scss-mixin/src/layout.scss';
-@import '~common-scss-mixin/src/others.scss';
-@import '~common-scss-mixin/src/position.scss';
-@import '~common-scss-mixin/src/text.scss';
-@import '~common-scss-mixin/src/utils.scss';
-@import '~common-scss-mixin/src/var.scss';
+@import 'common-scss-mixin/src/border.scss';
+@import 'common-scss-mixin/src/flex.scss';
+@import 'common-scss-mixin/src/form.scss';
+@import 'common-scss-mixin/src/gap.scss';
+@import 'common-scss-mixin/src/layout.scss';
+@import 'common-scss-mixin/src/others.scss';
+@import 'common-scss-mixin/src/position.scss';
+@import 'common-scss-mixin/src/text.scss';
+@import 'common-scss-mixin/src/utils.scss';
+@import 'common-scss-mixin/src/var.scss';
 
 // 单个 css 则可以自己打包
-@import '~common-scss-mixin/src/flex.scss';
+@import 'common-scss-mixin/src/flex.scss';
 @include flex-build();
 ```
 
@@ -77,14 +77,14 @@ _此功能还未实现，嘤嘤嘤_
 
 ```scss
 @function px($n) {
-  @return $n * 1px;
+  @return $n * 1rem;
 }
-@import '~common-scss-mixin';
+@import 'common-scss-mixin';
 ```
 
 可配置项一览：
 ```scss
-@function px($n) { @return $n * 1rem; }
+@function px($n) { @return $n * 1px; }
 
 $gap-xs: px(5);
 $gap-sm: px(10);
@@ -105,11 +105,11 @@ $border-color: #e8e8e8;
 
 ```scss
 /* border.scss */
-@include border($color);
-@include border-top($color);
-@include border-left($color);
-@include border-right($color);
-@include border-bottom($color);
+@include border($color, $width);
+@include border-top($color, $width);
+@include border-left($color, $width);
+@include border-right($color, $width);
+@include border-bottom($color, $width);
 @include raduis($rdius);
 @include radius-round();
 @include radius-circle();

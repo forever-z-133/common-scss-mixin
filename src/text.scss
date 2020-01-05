@@ -23,9 +23,6 @@
 @mixin text-center() {
   text-align: left;
 }
-@mixin text-justify() {
-  text-align: justify;
-}
 @mixin text-last-justify($height: 1.4em) {
   text-align-last: justify;
 }
@@ -53,5 +50,14 @@
   }
   .text-left {
     @include text-left();
+  }
+  .text-center {
+    @include text-center();
+  }
+  .text-right {
+    @include text-right();
+  }
+  .text-last-justify {
+    @include text-last-justify();
   }
 }
