@@ -32,9 +32,9 @@
 }
 
 /* 搞个方盒子 */
-@mixin rect-box($n: 100px) {
-  width: $n;
-  height: $n;
+@mixin rect-box($size: 1em) {
+  width: $size;
+  height: $size;
   display: block;
 }
 

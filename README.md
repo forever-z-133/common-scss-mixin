@@ -16,7 +16,7 @@ npm i -S common-scss-mixin
   @include pos-top(); /* 顶部定位 */
   @include flex-row(); /* flex 行且水平居中 */
   @include padding-row(); /* 两边加上 15px 的内边距 */
-  @include child-gap-right(); /* 子元素之间间隙为 10px */
+  @include child-gap-right(); /* 子元素之间间隙为 5px */
   @include border-bottom(); /* 底部毛细线 */
 }
 ```
@@ -91,7 +91,7 @@ $gap-sm: px(10);
 $gap-md: px(15);
 $gap-xl: px(30);
 $row-gap: $gap-md;
-$child-gap: $gap-sm;
+$child-gap: $gap-xs;
 
 $radius-md: px(4);
 $radius-round: 1000px;
@@ -159,13 +159,13 @@ $border-color: #e8e8e8;
 @include input-file();
 
 /* position.scss */
-@include cover();
+@include cover($type);
 @include fit-cover($fit);
-@include pos-center();
-@include pos-top();
-@include pos-bottom();
-@include pos-left();
-@include pos-right();
+@include pos-center($type);
+@include pos-top($type);
+@include pos-bottom($type);
+@include pos-left($type);
+@include pos-right($type);
 
 /* text.scss */
 @include text-overflow($line);
@@ -175,7 +175,7 @@ $border-color: #e8e8e8;
 @include reset();
 @include normal-list();
 @include clearfix();
-@include rect-box($width);
+@include rect-box($size);
 @include disabled($grey);
 @include ratio($ratio);
 @include image-ratio($ratio, $fit);

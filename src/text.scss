@@ -1,5 +1,5 @@
 /* ---------- 文本超出省略 */
-@mixin textOverflow($line: 1) {
+@mixin text-overflow($line: 1) {
   @if $line==1 {
     text-overflow: ellipsis;
     overflow: hidden;
@@ -40,12 +40,12 @@
 // }
 
 @mixin text-build() {
-  .textOverflow {
-    @include textOverflow(1);
+  .text-overflow {
+    @include text-overflow(1);
   }
   @for $i from 1 through 4 {
-    .textOverflow#{$i} {
-      @include textOverflow($i);
+    .text-overflow-#{$i} {
+      @include text-overflow($i);
     }
   }
   .text-left {
