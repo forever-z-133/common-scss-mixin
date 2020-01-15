@@ -1,9 +1,6 @@
 @import './var.scss';
 
 /* 两边间隙 */
-@mixin margin($n: $row-gap) {
-  margin: $n;
-}
 @mixin margin-row($n: $row-gap) {
   margin-left: $n;
   margin-right: $n;
@@ -14,9 +11,6 @@
 }
 
 /* 两边间隙 */
-@mixin padding($n: $row-gap) {
-  padding: $n;
-}
 @mixin padding-row($n: $row-gap) {
   padding-left: $n;
   padding-right: $n;
@@ -32,13 +26,13 @@
 }
 
 /* 子级间隙 */
-@mixin child-gap-right($n: $child-gap) {
-  & > :not(:last-of-type) {
+@mixin child-gap-right($n: $child-gap, $child: '') {
+  & > #{$child}:not(:last-of-type) {
     margin-right: $n;
   }
 }
-@mixin child-gap-bottom($n: $child-gap) {
-  & > :not(:last-of-type) {
+@mixin child-gap-bottom($n: $child-gap, $child: '') {
+  & > #{$child}:not(:last-of-type) {
     margin-bottom: $n;
   }
 }

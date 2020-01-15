@@ -120,8 +120,8 @@ $border-color: #e8e8e8;
 @include margin-row($gap);
 @include margin-col($gap);
 @include margin-center();
-@include child-gap-right($gap);
-@include child-gap-bottom($gap);
+@include child-gap-right($gap, $child);
+@include child-gap-bottom($gap, $child);
 
 /* flex.scss */
 @include flex-row-normal();
@@ -149,8 +149,8 @@ $border-color: #e8e8e8;
 @include flex-center();
 
 /* layout.scss */
-@include inblock-row();
-@include float-row();
+@include inblock-row($child);
+@include float-row($child);
 @include scroller($dir);
 @include scroller-x();
 @include scroller-y();
@@ -178,12 +178,12 @@ $border-color: #e8e8e8;
 @include rect-box($size);
 @include disabled($grey);
 @include ratio($ratio);
-@include image-ratio($ratio, $fit);
+@include image-ratio($ratio, $fit, $child);
 @include seo-only();
 @include pos-hide();
 
 /* utils.scss */
-@mixin child-map() { $content }
+@mixin child-map($child) { $content }
 sin($angle);
 cos($angle);
 tan($angle);

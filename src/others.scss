@@ -64,10 +64,10 @@
     clear: both;
   }
 }
-@mixin image-ratio($ratio: 1, $fit: cover) {
+@mixin image-ratio($ratio: 1, $fit: cover, $child: '*') {
   position: relative;
   @include __ratioBefore($ratio);
-  & > * {
+  & > #{$child} {
     @include fit-cover($fit);
   }
 }
