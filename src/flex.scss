@@ -1,19 +1,24 @@
+@import './var.scss';
+
 // 横向 flex
 @mixin flex-row-normal() {
   display: flex;
   align-items: center;
 }
-@mixin flex-row($child: '.grow') {
+@mixin flex-row($children: $flex-grow-children) {
   @include flex-row-normal();
-  @include flex-row-child($child);
+  @include flex-row-child($children);
 }
-@mixin flex-row-child($child: '.grow') {
-  & > #{$child} {
-    flex-grow: 1;
-    overflow: hidden;
-  }
-  & > :not(#{$child}) {
-    flex-shrink: 0;
+@mixin flex-row-child($children: $flex-grow-children) {
+  @each $child in $children {
+    & > #{$child} {
+      flex-grow: 1;
+    }
+    @each $el in $flex-shrink-children {
+      & > #{$el}:not(#{$child}) {
+        flex-shrink: 0;
+      }
+    }
   }
 }
 @mixin flex-row-top() {
@@ -49,16 +54,20 @@
   display: flex;
   flex-direction: column;
 }
-@mixin flex-col($child: '.grow') {
+@mixin flex-col($children: $flex-grow-children) {
   @include flex-col-normal();
-  @include flex-col-child($child);
+  @include flex-col-child($children);
 }
-@mixin flex-col-child($child: '.grow') {
-  & > #{$child} {
-    flex-grow: 1;
-  }
-  & > :not(#{$child}) {
-    flex-shrink: 0;
+@mixin flex-col-child($children: $flex-grow-children) {
+  @each $child in $children {
+    & > #{$child} {
+      flex-grow: 1;
+    }
+    @each $el in $flex-shrink-children {
+      & > #{$el}:not(#{$child}) {
+        flex-shrink: 0;
+      }
+    }
   }
 }
 @mixin flex-col-top() {
@@ -85,68 +94,85 @@
 
 // flex 居中
 @mixin flex-center() {
-  @include flex-row();
+  @include flex-row-normal();
   @include flex-row-center();
+}
+
+// flex 分栏布局
+@mixin flex-column($column: 2, $children: $flex-column-grow-children) {
+  display: flex;
+  @each $child in $children {
+    & > #{$child} {
+      flex-grow: 1;
+      flex-basis: (100 / $column) * 1%;
+    }
+  }
 }
 
 @mixin flex-build() {
   .flex-row {
     @include flex-row();
-    &.t {
+    &.top {
       @include flex-row-top();
     }
-    &.m {
+    &.middle {
       @include flex-row-middle();
     }
-    &.b {
+    &.bottom {
       @include flex-row-bottom();
     }
-    &.st {
+    &.stretch {
       @include flex-row-stretch();
     }
-    &.l {
+    &.left {
       @include flex-row-left();
     }
-    &.c {
+    &.center {
       @include flex-row-center();
     }
-    &.r {
+    &.right {
       @include flex-row-right();
     }
-    &.s {
+    &.space {
       @include flex-row-space();
     }
-    &.w {
+    &.wrap {
       @include flex-row-wrap();
     }
   }
 
   .flex-col {
     @include flex-col();
-    &.t {
+    &.top {
       @include flex-col-top();
     }
-    &.m {
+    &.middle {
       @include flex-col-middle();
     }
-    &.b {
+    &.bottom {
       @include flex-col-bottom();
     }
-    &.s {
+    &.space {
       @include flex-col-space();
     }
-    &.l {
+    &.left {
       @include flex-col-left();
     }
-    &.c {
+    &.center {
       @include flex-col-center();
     }
-    &.r {
+    &.right {
       @include flex-col-right();
     }
   }
 
   .flex-center {
     @include flex-center();
+  }
+
+  @each $i in 2, 3, 4, 5 {
+    .col-in-#{$i} {
+      @include flex-column($i);
+    }
   }
 }

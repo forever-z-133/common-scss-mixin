@@ -1,11 +1,12 @@
 @import './var.scss';
+@import './utils.scss';
 
 /* 两边间隙 */
 @mixin margin-row($n: $row-gap) {
   margin-left: $n;
   margin-right: $n;
 }
-@mixin margin-col($n: $row-gap) {
+@mixin margin-col($n: $col-gap) {
   margin-top: $n;
   margin-bottom: $n;
 }
@@ -15,7 +16,7 @@
   padding-left: $n;
   padding-right: $n;
 }
-@mixin padding-col($n: $row-gap) {
+@mixin padding-col($n: $col-gap) {
   padding-top: $n;
   padding-bottom: $n;
 }
@@ -26,14 +27,18 @@
 }
 
 /* 子级间隙 */
-@mixin child-gap-right($n: $child-gap, $child: '') {
-  & > #{$child}:not(:last-of-type) {
-    margin-right: $n;
+@mixin child-gap-right($n: $child-gap, $children: $child-gap-children, $not: $child-gap-children-not) {
+  @each $child in $children {
+    @include child-map($child, $not) {
+      margin-right: $n;
+    }
   }
 }
-@mixin child-gap-bottom($n: $child-gap, $child: '') {
-  & > #{$child}:not(:last-of-type) {
-    margin-bottom: $n;
+@mixin child-gap-bottom($n: $child-gap, $children: $child-gap-children, $not: $child-gap-children-not) {
+  @each $child in $children {
+    @include child-map($child, $not) {
+      margin-bottom: $n;
+    }
   }
 }
 
@@ -42,7 +47,7 @@
   @each $dir in left, right, top, bottom {
     @for $i from 1 through 10 {
       .margin-#{$dir}-#{$i*5} {
-        margin-#{$dir}: $i * $child-gap;
+        margin-#{$dir}: $i * px(5);
       }
     }
   }
@@ -50,7 +55,7 @@
   @each $dir in left, right, top, bottom {
     @for $i from 1 through 10 {
       .padding-#{$dir}-#{$i*5} {
-        padding-#{$dir}: $i * $child-gap;
+        padding-#{$dir}: $i * px(5);
       }
     }
   }
@@ -59,9 +64,9 @@
     @for $i from 1 through 10 {
       .gap-#{$dir}-#{$i*5} {
         @if ($dir == right) {
-          @include child-gap-right($i * $child-gap);
+          @include child-gap-right($i * px(5));
         } @else if ($dir == bottom) {
-          @include child-gap-bottom($i * $child-gap);
+          @include child-gap-bottom($i * px(5));
         }
       }
     }

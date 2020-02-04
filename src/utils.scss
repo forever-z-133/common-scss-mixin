@@ -1,5 +1,5 @@
-@mixin child-map($child: '') {
-  & > #{$child}:not(:last-child) {
+@mixin child-map($child: '', $not: ':last-of-type') {
+  & > #{$child}:not(#{$not}) {
     @content;
   }
 }

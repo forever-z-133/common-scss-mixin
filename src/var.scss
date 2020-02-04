@@ -2,16 +2,23 @@
   @return $px * 1px;
 }
 
-$gap-xs: px(5);
-$gap-sm: px(10);
-$gap-md: px(15);
-$gap-xl: px(30);
-$row-gap: $gap-md;
-$child-gap: $gap-xs;
+$row-gap: px(15);
+$col-gap: px(10);
+$child-gap: px(10);
 
 $radius-md: px(4);
-$radius-round: 1000px;
+$radius-round: 1000em;
 $radius-circle: 50%;
 
 $border-width: 1PX;
 $border-color: #e8e8e8;
+
+$flex-grow-children: '.grow';
+$flex-shrink-children: '';
+$flex-column-grow-children: '.item', '.col';
+$float-row-children: '*';
+$inblock-row-children: '*';
+$child-gap-children: '';
+$child-gap-children-not: ':last-of-type';
+$input-file-child: '[type="file"]';
+$image-ratio-children: '*';

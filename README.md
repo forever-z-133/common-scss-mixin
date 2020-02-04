@@ -13,10 +13,10 @@ npm i -S common-scss-mixin
 @import 'common-scss-mixin';
 
 .someClass {
-  @include pos-top(); /* 顶部定位 */
-  @include flex-row(); /* flex 行且水平居中 */
+  @include pos-top(fixed); /* 顶部定位 */
+  @include flex-row(); /* flex 行且垂直居中 */
   @include padding-row(); /* 两边加上 15px 的内边距 */
-  @include child-gap-right(); /* 子元素之间间隙为 5px */
+  @include child-gap-right(); /* 子元素之间间隙为 10px */
   @include border-bottom(); /* 底部毛细线 */
 }
 ```
@@ -28,14 +28,17 @@ npm i -S common-scss-mixin
 // 如果喜欢本项目的话，可通过源码进一步尝试
 @import 'common-scss-mixin/dist.min.css';
 ```
+
 ```html
-<div class="post-top flex-row padding-row gap-right-5 border-bottom"></div>
+<div class="fixed-top flex-row padding-row gap-right-5 border-bottom"></div>
 ```
 
 ### 使用单个 scss
 
 ```scss
 // 如果担心编译太多 mixin 会影响性能，可分别引入
+@import 'common-scss-mixin/src/var.scss';
+@import 'common-scss-mixin/src/utils.scss';
 @import 'common-scss-mixin/src/border.scss';
 @import 'common-scss-mixin/src/flex.scss';
 @import 'common-scss-mixin/src/form.scss';
@@ -44,12 +47,12 @@ npm i -S common-scss-mixin
 @import 'common-scss-mixin/src/others.scss';
 @import 'common-scss-mixin/src/position.scss';
 @import 'common-scss-mixin/src/text.scss';
-@import 'common-scss-mixin/src/utils.scss';
-@import 'common-scss-mixin/src/var.scss';
 
 // 单个 css 则可以自己打包
 @import 'common-scss-mixin/src/flex.scss';
+@import 'common-scss-mixin/src/position.scss';
 @include flex-build();
+@include position-build();
 ```
 
 ### 全局使用 scss
@@ -63,56 +66,70 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        // 当 sass-loader 版本低于 7.0 时需改为 data
+        // 当 sass-loader 版本低于 7.0 时 prependData 需改为 data
         prependData: "@import 'common-scss-mixin';"
       }
     }
   }
-}
+};
 ```
 
 ## 2、如何自定义
 
-_此功能还未实现，嘤嘤嘤_
-
 ```scss
+// some/common.scss;
+@import 'common-scss-mixin';
 @function px($n) {
   @return $n * 1rem;
 }
-@import 'common-scss-mixin';
+
+// 使用
+@import 'some/common.scss';
 ```
 
 可配置项一览：
+
 ```scss
 @function px($n) { @return $n * 1px; }
 
-$gap-xs: px(5);
-$gap-sm: px(10);
-$gap-md: px(15);
-$gap-xl: px(30);
-$row-gap: $gap-md;
-$child-gap: $gap-xs;
+$row-gap: px(15);
+$col-gap: px(10);
+$child-gap: px(10);
 
 $radius-md: px(4);
-$radius-round: 1000px;
+$radius-round: 1000em;
 $radius-circle: 50%;
 
 $border-width: 1PX;
 $border-color: #e8e8e8;
+
+// 譬如小程序不支持 '*' 则可改为 'view', 'text' 等
+// 且 children 代表可设配多个子类
+$flex-grow-children: '.grow';
+$flex-shrink-children: '';
+$flex-column-grow-children: '.item', '.col';
+$float-row-children: '*';
+$inblock-row-children: '*';
+$child-gap-children: '';
+$child-gap-children-not: ':last-of-type';
+$input-file-child: '[type="file"]';
+$image-ratio-children: '*';
 ```
 
 ## 3、总览
 
 ```scss
+// 注意 $children 想传入数组类型时需用 #{}，比如 @include xx(#{'view', 'text'});
+
 /* border.scss */
 @include border($color, $width);
 @include border-top($color, $width);
 @include border-left($color, $width);
 @include border-right($color, $width);
 @include border-bottom($color, $width);
-@include raduis($rdius);
-@include radius-round();
-@include radius-circle();
+@include raduis($rdius, $overflow);
+@include radius-round($overflow);
+@include radius-circle($overflow);
 
 /* gap.scss */
 @include padding-row($gap);
@@ -120,12 +137,12 @@ $border-color: #e8e8e8;
 @include margin-row($gap);
 @include margin-col($gap);
 @include margin-center();
-@include child-gap-right($gap, $child);
-@include child-gap-bottom($gap, $child);
+@include child-gap-right($gap, $children);
+@include child-gap-bottom($gap, $children);
 
 /* flex.scss */
 @include flex-row-normal();
-@include flex-row($child);
+@include flex-row($children);
 @include flex-row-top();
 @include flex-row-middle();
 @include flex-row-bottom();
@@ -137,7 +154,7 @@ $border-color: #e8e8e8;
 @include flex-row-wrap();
 
 @include flex-col-normal();
-@include flex-col($child);
+@include flex-col($children);
 @include flex-col-top();
 @include flex-col-middle();
 @include flex-col-bottom();
@@ -147,16 +164,18 @@ $border-color: #e8e8e8;
 @include flex-col-right();
 
 @include flex-center();
+@include flex-column($column, $children);
 
 /* layout.scss */
-@include inblock-row($child);
-@include float-row($child);
+@include inblock-row($children);
+@include float-row($children);
 @include scroller($dir);
 @include scroller-x();
 @include scroller-y();
 
 /* form.scss */
 @include input-file();
+@include pure();
 
 /* position.scss */
 @include cover($type);
@@ -166,6 +185,11 @@ $border-color: #e8e8e8;
 @include pos-bottom($type);
 @include pos-left($type);
 @include pos-right($type);
+@include pos-top-left($type, $offset);
+@include pos-top-right($type, $offset);
+@include pos-bottom-left($type, $offset);
+@include pos-bottom-right($type, $offset);
+@include pos-hide();
 
 /* text.scss */
 @include text-overflow($line);
@@ -178,12 +202,11 @@ $border-color: #e8e8e8;
 @include rect-box($size);
 @include disabled($grey);
 @include ratio($ratio);
-@include image-ratio($ratio, $fit, $child);
+@include image-ratio($ratio, $fit, $children);
 @include seo-only();
-@include pos-hide();
 
 /* utils.scss */
-@mixin child-map($child) { $content }
+@mixin child-map($child, $not) { $content }
 sin($angle);
 cos($angle);
 tan($angle);

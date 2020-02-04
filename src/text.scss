@@ -1,7 +1,6 @@
 /* ---------- 文本超出省略 */
 @mixin text-overflow($line: 1) {
   @if $line==1 {
-    /* 注意，此方案需放在父级元素上 */
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

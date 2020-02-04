@@ -1,19 +1,23 @@
 @import './others.scss';
 
 /* inline-block 行 */
-@mixin inblock-row($child: '*') {
+@mixin inblock-row($children: $inblock-row-children) {
   letter-spacing: -1em;
-  & > #{$child} {
-    display: inline-block;
-    letter-spacing: 0;
+  @each $child in $children {
+    & > #{$child} {
+      display: inline-block;
+      letter-spacing: 0;
+    }
   }
 }
 
 /* float 行 */
-@mixin float-row($child: '*') {
+@mixin float-row($children: $float-row-children) {
   @include clearfix();
-  & > #{$child} {
-    float: left;
+  @each $child in $children {
+    & > #{$child} {
+      float: left;
+    }
   }
 }
 

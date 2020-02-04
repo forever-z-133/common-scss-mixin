@@ -1,16 +1,24 @@
 /* 自定义上传按钮，必须用 label 包裹并带上此类 */
-@mixin input-file() {
+@mixin input-file($child: $input-file-child) {
   position: relative;
   vertical-align: middle;
   cursor: pointer;
-  & > [type='file'] {
+  & > #{$child} {
     position: absolute;
     left: -999em;
   }
 }
 
+/* 清除 button input 等原本样式 */
+@mixin pure() {
+  @include reset();
+}
+
 @mixin form-build() {
   label.input-file {
     @include input-file();
+  }
+  .pure {
+    @include pure();
   }
 }
