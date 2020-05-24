@@ -112,7 +112,7 @@ $float-row-children: '*';
 $inblock-row-children: '*';
 $child-gap-children: '';
 $child-gap-children-not: ':last-of-type';
-$input-file-child: '[type="file"]';
+$input-file-children: '[type="file"]';
 $image-ratio-children: '*';
 ```
 

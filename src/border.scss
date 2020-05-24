@@ -1,7 +1,5 @@
 @import './var.scss';
 
-/* 毛细线部分 */
-/* 未来可能会加入毛细线方案吧 */
 @mixin borderDir($dir, $width: $border-width, $color: $border-color) {
   border-#{$dir}: $width solid $color;
 }
@@ -21,7 +19,6 @@
   @include borderDir(right, $width, $color);
 }
 
-/* 圆角部分 */
 @mixin radius($radius: $radius-md, $overflow: hidden) {
   border-radius: $radius;
   overflow: $overflow;

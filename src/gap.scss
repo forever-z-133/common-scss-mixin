@@ -1,7 +1,6 @@
 @import './var.scss';
 @import './utils.scss';
 
-/* 两边间隙 */
 @mixin margin-row($n: $row-gap) {
   margin-left: $n;
   margin-right: $n;
@@ -11,7 +10,6 @@
   margin-bottom: $n;
 }
 
-/* 两边间隙 */
 @mixin padding-row($n: $row-gap) {
   padding-left: $n;
   padding-right: $n;
@@ -21,12 +19,10 @@
   padding-bottom: $n;
 }
 
-/* 其他间隙 */
 @mixin margin-center() {
   @include margin-row(auto);
 }
 
-/* 子级间隙 */
 @mixin child-gap-right($n: $child-gap, $children: $child-gap-children, $not: $child-gap-children-not) {
   @each $child in $children {
     @include child-map($child, $not) {
@@ -42,7 +38,6 @@
   }
 }
 
-/* 导出结果 */
 @mixin gap-build() {
   @each $dir in left, right, top, bottom {
     @for $i from 1 through 10 {

@@ -1,6 +1,5 @@
 @import './var.scss';
 
-// 横向 flex
 @mixin flex-row-normal() {
   display: flex;
   align-items: center;
@@ -49,7 +48,6 @@
   flex-wrap: wrap;
 }
 
-// 纵向 flex
 @mixin flex-col-normal() {
   display: flex;
   flex-direction: column;
@@ -92,13 +90,11 @@
   align-items: flex-end;
 }
 
-// flex 居中
 @mixin flex-center() {
   @include flex-row-normal();
   @include flex-row-center();
 }
 
-// flex 分栏布局
 @mixin flex-column($column: 2, $children: $flex-column-grow-children) {
   display: flex;
   @each $child in $children {

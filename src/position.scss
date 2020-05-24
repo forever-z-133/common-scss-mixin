@@ -1,4 +1,3 @@
-// 覆盖
 @mixin cover($type: absolute) {
   position: $type;
   top: 0;
@@ -6,7 +5,6 @@
   right: 0;
   bottom: 0;
 }
-// 覆盖（img,video 等）
 @mixin fit-cover($fit: cover) {
   position: absolute;
   top: 0;
@@ -16,7 +14,6 @@
   object-fit: $fit;
 }
 
-// 定位居中
 @mixin pos-center($type: absolute) {
   position: $type;
   top: 50%;
@@ -24,7 +21,6 @@
   transform: translate(-50%, -50%);
 }
 
-// 吸边
 @mixin pos-top($type: absolute) {
   position: $type;
   top: 0;
@@ -50,7 +46,6 @@
   bottom: 0;
 }
 
-// 贴角
 @mixin pos-top-left($type: absolute, $offset: 0) {
   position: $type;
   top: $offset;
@@ -72,8 +67,6 @@
   right: $offset;
 }
 
-/* 隐藏但保持渲染，适用于 canvas 等 */
-/* 但需注意该隐藏元素的高度，父级最好有 overflow */
 @mixin pos-hide() {
   position: absolute;
   left: -9999em;

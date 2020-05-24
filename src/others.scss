@@ -1,6 +1,5 @@
 @import './position.scss';
 
-/* 重置 a input 等的样式 */
 @mixin reset() {
   font: inherit;
   color: inherit;
@@ -8,13 +7,11 @@
   border: none;
   padding: 0 0;
   text-decoration: none;
-  // 针对小程序按钮加个处理
   &::after {
     display: none;
   }
 }
 
-/* 清除 ul 样式 */
 @mixin normal-list() {
   margin-top: 0;
   margin-bottom: 0;
@@ -22,7 +19,6 @@
   list-style: none;
 }
 
-/* 清楚浮动 */
 @mixin clearfix() {
   &::after {
     display: block;
@@ -31,14 +27,12 @@
   }
 }
 
-/* 搞个方盒子 */
 @mixin rect-box($size: 1em) {
   width: $size;
   height: $size;
   display: block;
 }
 
-/* 禁用 */
 @mixin disabled($grey: false) {
   pointer-events: none;
   user-select: none;
@@ -47,7 +41,6 @@
   }
 }
 
-/* 等比例盒子，两套方案是同样的效果，但 imgRatio 会让子级定位 */
 @mixin __ratioBefore($ratio: 1) {
   &::before {
     content: '';
@@ -74,7 +67,6 @@
   }
 }
 
-/* 有文本内容，但不影响布局 */
 @mixin seo-only() {
   border: 0;
   clip: rect(0 0 0 0);

@@ -1,15 +1,15 @@
-/* 自定义上传按钮，必须用 label 包裹并带上此类 */
-@mixin input-file($child: $input-file-child) {
+@mixin input-file($children: $input-file-children) {
   position: relative;
   vertical-align: middle;
   cursor: pointer;
-  & > #{$child} {
-    position: absolute;
-    left: -999em;
+  @each $child in $children {
+    & > #{$child} {
+      position: absolute;
+      left: -999em;
+    }
   }
 }
 
-/* 清除 button input 等原本样式 */
 @mixin pure() {
   @include reset();
 }
