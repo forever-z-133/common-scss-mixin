@@ -44,7 +44,7 @@
 @mixin __ratioBefore($ratio: 1) {
   &::before {
     content: '';
-    float: left;
+    display: block;
     padding-top: $ratio * 100%;
   }
 }
