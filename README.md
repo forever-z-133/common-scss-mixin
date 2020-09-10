@@ -3,8 +3,9 @@
 ## 1、如何使用
 
 ```
-npm i -S common-scss-mixin
+npm i -D common-scss-mixin
 ```
+https://www.npmjs.com/package/common-scss-mixin
 
 ### 使用 scss
 
@@ -66,8 +67,10 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        // 当 sass-loader 版本低于 7.0 时 prependData 需改为 data
-        prependData: "@import 'common-scss-mixin';"
+        // 当 sass-loader 版本
+        // 低于 7.0 时 additionalData 需改为 data
+        // 低于 9.0 时 additionalData 需改为 prependData
+        additionalData: "@import 'common-scss-mixin';"
       }
     }
   }
